@@ -55,3 +55,9 @@ build/tests/CMakeFiles/tridiagonal_test.dir/link.txt
 build/tests/CMakeFiles/tridiagonal_test.dir/progress.make
 build/tests/CMakeFiles/tridiagonal_test.dir/tridiagonal_test.cpp.o
 build/tests/CMakeFiles/tridiagonal_test.dir/tridiagonal_test.cpp.o.d
+build/CTestTestfile.cmake
+build/Testing/Temporary/CTestCostData.txt
+build/Testing/Temporary/LastTest.log
+build/Testing/Temporary/LastTestsFailed.log
+build/source/CTestTestfile.cmake
+build/tests/CTestTestfile.cmake
