@@ -1,7 +1,8 @@
-project(SLAE)
-
 cmake_minimum_required(VERSION 3.0)
 
-add_executable(SLAE main.cpp classes/matrixes.cpp)
+project(SLAE)
 
-find_package(i
+include_directories(source)
+
+add_subdirectory(source)
+add_subdirectory(tests)
