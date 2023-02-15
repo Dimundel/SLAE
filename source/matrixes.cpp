@@ -1,6 +1,7 @@
 #include "matrixes.h"
 
-TridiagonalMatrix::TridiagonalMatrix(std::vector<std::array<float, 3>> data) {
+TridiagonalMatrix::TridiagonalMatrix(
+    const std::vector<std::array<float, 3>> &data) {
     m_data = data;
 }
 

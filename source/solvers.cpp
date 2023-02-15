@@ -4,6 +4,8 @@
 std::vector<float> solve(const TridiagonalMatrix &matrix, std::vector<float> column) {
     int n = matrix.get_size() - 1;
     std::vector<float> p_vector{0}, q_vector{0};
+    p_vector.reserve(matrix.get_size());
+    q_vector.reserve(matrix.get_size());
     for (int i = 0; i < n + 1; ++i) {
         p_vector.push_back(
             -1 * matrix.get_item(i, i + 1) /
