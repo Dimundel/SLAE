@@ -32,6 +32,13 @@ TEST(CSRTest, CheckRowIndexationInitialization) {
     ASSERT_EQ(slae2.get_row_indexation(), row_indexation2);
 }
 
+TEST(CSRTest, CheckItemGetting) {
+    ASSERT_EQ(slae1.get_item(1, 1), 4);
+    ASSERT_EQ(slae1.get_item(1, 0), 0);
+    ASSERT_EQ(slae2.get_item(2, 3), 11);
+    ASSERT_EQ(slae2.get_item(9, 8), 0);
+}
+
 int main() {
     ::testing::InitGoogleTest();
     return RUN_ALL_TESTS();

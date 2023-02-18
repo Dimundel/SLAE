@@ -39,3 +39,11 @@ const std::vector<int> &CSRMatrix::get_column_indexes() const {
 const std::vector<int> &CSRMatrix::get_row_indexation() const {
     return m_row_indexation;
 }
+float CSRMatrix::get_item(int i, int j) const {
+    for (int k = m_row_indexation[i]; k < m_row_indexation[i + 1]; ++k) {
+        if (m_column_indexes[k] == j) {
+            return m_values[k];
+        }
+    }
+    return 0;
+}

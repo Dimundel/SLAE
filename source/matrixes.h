@@ -26,6 +26,7 @@ public:
     const std::vector<float> &get_values() const;
     const std::vector<int> &get_column_indexes() const;
     const std::vector<int> &get_row_indexation() const;
+    float get_item(int i, int j) const;
 };
 
 #endif
