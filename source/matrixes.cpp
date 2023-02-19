@@ -29,7 +29,7 @@ CSRMatrix::CSRMatrix(const std::map<std::pair<int, int>, float> &data) {
         m_values.push_back(it->second);
         m_column_indexes.push_back(it->first.second);
         ++row_indexation;
-        for(int i = it->first.first; i < std::next(it, 1)->first.first; ++i){
+        for (int i = it->first.first; i < std::next(it, 1)->first.first; ++i) {
             m_row_indexation.push_back(row_indexation);
             if (std::next(it, 1) == data.cend()) {
                 break;
@@ -46,7 +46,10 @@ const std::vector<int> &CSRMatrix::get_row_indexation() const {
     return m_row_indexation;
 }
 float CSRMatrix::get_item(int i, int j) const {
-    for (int k = m_row_indexation[i]; k < m_row_indexation[i + 1]; ++k) {
+    if (i + 1 >= m_column_indexes.size()){
+        return 0;
+    }
+    for (int k = m_row_indexation[i]; k <= m_row_indexation[i + 1]; ++k) {
         if (m_column_indexes[k] == j) {
             return m_values[k];
         }
