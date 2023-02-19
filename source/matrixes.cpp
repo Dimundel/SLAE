@@ -47,3 +47,16 @@ float CSRMatrix::get_item(int i, int j) const {
     }
     return 0;
 }
+
+std::vector<float>
+CSRMatrix::operator*(const std::vector<float> &column) const {
+    std::vector<float> res;
+    for (int k = 0; k < m_row_indexation.size() - 1; ++k) {
+        float temp = 0;
+        for (int i = m_row_indexation[k]; i < m_row_indexation[k + 1]; ++i) {
+            temp += m_values[i] * column[m_column_indexes[i]];
+        }
+        res.push_back(temp);
+    }
+    return res;
+}

@@ -27,6 +27,7 @@ public:
     const std::vector<int> &get_column_indexes() const;
     const std::vector<int> &get_row_indexation() const;
     float get_item(int i, int j) const;
+    std::vector<float> operator*(const std::vector<float> &column) const;
 };
 
 #endif
