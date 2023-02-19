@@ -20,14 +20,20 @@ float TridiagonalMatrix::get_item(int i, int j) const {
 }
 
 CSRMatrix::CSRMatrix(const std::map<std::pair<int, int>, float> &data) {
+    m_values.reserve(data.size());
+    m_column_indexes.reserve(data.size());
+    m_row_indexation.reserve(data.size());
     m_row_indexation.push_back(0);
     int row_indexation = 0;
     for (auto it = data.cbegin(); it != data.end(); ++it) {
         m_values.push_back(it->second);
         m_column_indexes.push_back(it->first.second);
         ++row_indexation;
-        if (std::next(it, 1)->first.first != it->first.first) {
+        for(int i = it->first.first; i < std::next(it, 1)->first.first; ++i){
             m_row_indexation.push_back(row_indexation);
+            if (std::next(it, 1) == data.cend()) {
+                break;
+            }
         }
     }
 }
@@ -51,6 +57,7 @@ float CSRMatrix::get_item(int i, int j) const {
 std::vector<float>
 CSRMatrix::operator*(const std::vector<float> &column) const {
     std::vector<float> res;
+    res.reserve(m_row_indexation.size() - 1);
     for (int k = 0; k < m_row_indexation.size() - 1; ++k) {
         float temp = 0;
         for (int i = m_row_indexation[k]; i < m_row_indexation[k + 1]; ++i) {
