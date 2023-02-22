@@ -30,4 +30,14 @@ public:
     std::vector<float> operator*(const std::vector<float> &column) const;
 };
 
+class DenseMatrix {
+private:
+    std::vector<float> m_data;
+    int m_columns;
+
+public:
+    DenseMatrix(const std::vector<float>& data, int m);
+    float get_item(int i, int j) const;
+};
+
 #endif
