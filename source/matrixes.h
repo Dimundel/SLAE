@@ -35,7 +35,7 @@ public:
 class DenseMatrix {
 private:
     std::vector<float> m_data;
-    int m_columns;
+    int m_columns, m_rows;
 
 public:
     DenseMatrix(const std::vector<float> &data, int m);

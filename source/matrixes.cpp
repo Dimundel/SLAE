@@ -74,6 +74,7 @@ CSRMatrix::operator*(const std::vector<float> &column) const {
 DenseMatrix::DenseMatrix(const std::vector<float> &data, int m) {
     m_data = data;
     m_columns = m;
+    m_rows = (m_data.size() + (m_columns - 1)) / m_columns;
 }
 
 float DenseMatrix::get_item(int i, int j) const {
@@ -86,10 +87,9 @@ float DenseMatrix::get_item(int i, int j) const {
 std::vector<float> DenseMatrix::operator*(const std::vector<float> &column) const {
     assert(m_columns == column.size() &&
            "the matrix's number of columns must be equal to column size");
-    int rows = (m_data.size() + (m_columns - 1)) / m_columns;
     float temp;
     std::vector<float> res;
-    for(int i = 0; i < rows; ++i){
+    for(int i = 0; i < m_rows; ++i){
         temp = 0;
         for(int j = 0; j < m_columns; ++j){
             temp += get_item(i, j) * column[j];
