@@ -2,6 +2,8 @@
 #include <iterator>
 #include <map>
 #include <vector>
+#include <cassert>
+#include <cmath>
 
 #ifndef MATRIXES_H
 #define MATRIXES_H
@@ -36,8 +38,9 @@ private:
     int m_columns;
 
 public:
-    DenseMatrix(const std::vector<float>& data, int m);
+    DenseMatrix(const std::vector<float> &data, int m);
     float get_item(int i, int j) const;
+    std::vector<float> operator*(const std::vector<float> &column) const;
 };
 
 #endif
