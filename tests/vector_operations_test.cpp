@@ -13,6 +13,7 @@ const std::vector<float> res4 = {0, -2, -2, -6};
 const std::vector<float> res5 = {12, 6, 9, -6};
 const std::vector<float> res6 = {-4, 6, -2, -8};
 const std::vector<float> res7 = {-12, 28, 0, 20};
+const int res8 = -8;
 
 TEST(VectorOperationsTest, CheckVectorAddition) {
     ASSERT_EQ(vec1 + vec2, res1);
@@ -25,6 +26,10 @@ TEST(VectorOperationTest, CheckVectorNumberMultiplication) {
     ASSERT_EQ(vec1 * 3, res5);
     ASSERT_EQ(4 * vec2, res7);
     ASSERT_EQ(vec5 *= -2, res6);
+}
+
+TEST(VectorOperationTest, CheckVectorDotProduct){
+    EXPECT_EQ(dot_product(vec1, vec2), res8);
 }
 
 int main() {
