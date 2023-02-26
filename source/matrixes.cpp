@@ -70,9 +70,10 @@ CSRMatrix::operator*(const std::vector<float> &column) const {
     return res;
 }
 
-DenseMatrix::DenseMatrix(const std::vector<float> &data, int m)
-    : m_data{data}, m_columns{m}, m_rows{m_data.size() +
-                                         (m_columns - 1) / m_columns} {}
+DenseMatrix::DenseMatrix(const std::vector<float> &data, int columns_num)
+    : m_data{data}, m_columns{columns_num}, m_rows{(data.size() + columns_num -
+                                                    1) /
+                                                   columns_num} {}
 
 float DenseMatrix::get_item(int i, int j) const {
     if (i * m_columns + j >= m_data.size()) {
