@@ -3,33 +3,32 @@
 
 const std::vector<float> vec1 = {4, 2, 3, -2};
 const std::vector<float> vec2 = {-3, 7, 0, 5};
-std::vector<float> vec3 = {-4, 12, -3, 1};
-std::vector<float> vec4 = {-3, 5, -2, -1};
-std::vector<float> vec5 = {2, -3, 1, 4};
-const std::vector<float> res1 = {1, 9, 3, 3};
-const std::vector<float> res2 = {7, -5, 3, -7};
-const std::vector<float> res3 = {0, 14, 0, -1};
-const std::vector<float> res4 = {0, -2, -2, -6};
-const std::vector<float> res5 = {12, 6, 9, -6};
-const std::vector<float> res6 = {-4, 6, -2, -8};
-const std::vector<float> res7 = {-12, 28, 0, 20};
-const int res8 = -8;
 
 TEST(VectorOperationsTest, CheckVectorAddition) {
+    const std::vector<float> res1 = {1, 9, 3, 3};
     ASSERT_EQ(vec1 + vec2, res1);
+    const std::vector<float> res2 = {7, -5, 3, -7};
     ASSERT_EQ(vec1 - vec2, res2);
+    std::vector<float> vec3 = {-4, 12, -3, 1};
+    const std::vector<float> res3 = {0, 14, 0, -1};
     ASSERT_EQ(vec3 += vec1, res3);
+    std::vector<float> vec4 = {-3, 5, -2, -1};
+    const std::vector<float> res4 = {0, -2, -2, -6};
     ASSERT_EQ(vec4 -= vec2, res4);
 }
 
 TEST(VectorOperationTest, CheckVectorNumberMultiplication) {
+    const std::vector<float> res5 = {12, 6, 9, -6};
     ASSERT_EQ(vec1 * 3, res5);
-    ASSERT_EQ(4 * vec2, res7);
-    ASSERT_EQ(vec5 *= -2, res6);
+    const std::vector<float> res6 = {-12, 28, 0, 20};
+    ASSERT_EQ(4 * vec2, res6);
+    std::vector<float> vec5 = {2, -3, 1, 4};
+    const std::vector<float> res7 = {-4, 6, -2, -8};
+    ASSERT_EQ(vec5 *= -2, res7);
 }
 
-TEST(VectorOperationTest, CheckVectorDotProduct){
-    EXPECT_EQ(dot_product(vec1, vec2), res8);
+TEST(VectorOperationTest, CheckVectorDotProduct) {
+    EXPECT_EQ(dot_product(vec1, vec2), -8);
 }
 
 int main() {
