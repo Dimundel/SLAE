@@ -1,9 +1,8 @@
 #include "matrixes.h"
 
 TridiagonalMatrix::TridiagonalMatrix(
-    const std::vector<std::array<float, 3>> &data) {
-    m_data = data;
-}
+    const std::vector<std::array<float, 3>> &data)
+    : m_data{data} {}
 
 int TridiagonalMatrix::get_size() const { return m_data.size(); }
 
@@ -71,11 +70,9 @@ CSRMatrix::operator*(const std::vector<float> &column) const {
     return res;
 }
 
-DenseMatrix::DenseMatrix(const std::vector<float> &data, int m) {
-    m_data = data;
-    m_columns = m;
-    m_rows = (m_data.size() + (m_columns - 1)) / m_columns;
-}
+DenseMatrix::DenseMatrix(const std::vector<float> &data, int m)
+    : m_data{data}, m_columns{m}, m_rows{m_data.size() +
+                                         (m_columns - 1) / m_columns} {}
 
 float DenseMatrix::get_item(int i, int j) const {
     if (i * m_columns + j >= m_data.size()) {
@@ -84,14 +81,15 @@ float DenseMatrix::get_item(int i, int j) const {
     return m_data[i * m_columns + j];
 }
 
-std::vector<float> DenseMatrix::operator*(const std::vector<float> &column) const {
+std::vector<float>
+DenseMatrix::operator*(const std::vector<float> &column) const {
     assert(m_columns == column.size() &&
            "the matrix's number of columns must be equal to column size");
     float temp;
     std::vector<float> res;
-    for(int i = 0; i < m_rows; ++i){
+    for (int i = 0; i < m_rows; ++i) {
         temp = 0;
-        for(int j = 0; j < m_columns; ++j){
+        for (int j = 0; j < m_columns; ++j) {
             temp += get_item(i, j) * column[j];
         }
         res.push_back(temp);
