@@ -17,7 +17,7 @@ TEST(VectorOperationsTest, CheckVectorAddition) {
     ASSERT_EQ(vec4 -= vec2, res4);
 }
 
-TEST(VectorOperationTest, CheckVectorNumberMultiplication) {
+TEST(VectorOperationsTest, CheckVectorNumberMultiplication) {
     const std::vector<float> res5 = {12, 6, 9, -6};
     ASSERT_EQ(vec1 * 3, res5);
     const std::vector<float> res6 = {-12, 28, 0, 20};
@@ -27,8 +27,13 @@ TEST(VectorOperationTest, CheckVectorNumberMultiplication) {
     ASSERT_EQ(vec5 *= -2, res7);
 }
 
-TEST(VectorOperationTest, CheckVectorDotProduct) {
+TEST(VectorOperationsTest, CheckVectorDotProduct) {
     EXPECT_EQ(dot_product(vec1, vec2), -8);
+}
+
+TEST(VectorOperationsTest, CheckVectorLength){
+    std::vector<float> vec{3, 4, 12};
+    EXPECT_EQ(length(vec), 13);
 }
 
 int main() {

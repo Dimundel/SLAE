@@ -46,11 +46,15 @@ std::vector<float> operator*(const int num, const std::vector<float> &vec) {
     return vec * num;
 }
 
-int dot_product(const std::vector<float> vec1, const std::vector<float> vec2) {
+float dot_product(const std::vector<float> vec1, const std::vector<float> vec2) {
     assert(vec1.size() == vec2.size() && "vectors must be the same size");
     int res = 0;
     for (int i = 0; i < vec1.size(); ++i) {
         res += vec1[i] * vec2[i];
     }
     return res;
+}
+
+float length(const std::vector<float> vec){
+    return std::sqrt(dot_product(vec, vec));
 }
