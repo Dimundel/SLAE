@@ -75,6 +75,10 @@ DenseMatrix::DenseMatrix(const std::vector<float> &data, int columns_num)
                                                     1) /
                                                    columns_num} {}
 
+int DenseMatrix::get_number_of_columns() const { return m_columns; }
+
+int DenseMatrix::get_number_of_rows() const { return m_rows; }
+
 float DenseMatrix::get_item(int i, int j) const {
     if (i * m_columns + j >= m_data.size()) {
         return 0;

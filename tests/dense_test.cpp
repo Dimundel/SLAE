@@ -18,6 +18,12 @@ TEST(DenseTest, CheckMatrixVectorMultiplication) {
     EXPECT_EQ(slae1 * column2, res2);
 }
 
+TEST(DenseTest, CheckRowNumber) {
+    ASSERT_EQ(slae1.get_number_of_columns(), 3);
+    const DenseMatrix slae2({1, 2, 3, 4, 5, 6, 7}, 2);
+    ASSERT_EQ(slae2.get_number_of_rows(), 4);
+}
+
 int main() {
     ::testing::InitGoogleTest();
     return RUN_ALL_TESTS();
