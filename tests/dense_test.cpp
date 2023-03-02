@@ -24,6 +24,16 @@ TEST(DenseTest, CheckRowNumber) {
     ASSERT_EQ(slae2.get_number_of_rows(), 4);
 }
 
+TEST(DenseTest, CheckColumnGetting) {
+    const std::vector<float> col1 = {1, 0, 0};
+    EXPECT_EQ(slae1.get_column(0), col1);
+}
+
+TEST(DenseTest, CheckRowGetting) {
+    const std::vector<float> row1 = {0, 3, 6};
+    EXPECT_EQ(slae1.get_row(1), row1);
+}
+
 int main() {
     ::testing::InitGoogleTest();
     return RUN_ALL_TESTS();

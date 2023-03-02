@@ -86,6 +86,24 @@ float DenseMatrix::get_item(int i, int j) const {
     return m_data[i * m_columns + j];
 }
 
+std::vector<float> DenseMatrix::get_column(int i) const {
+    std::vector<float> res;
+    res.reserve(m_rows);
+    for (int j = 0; j < m_rows; ++j) {
+        res.push_back(get_item(j, i));
+    }
+    return res;
+}
+
+std::vector<float> DenseMatrix::get_row(int i) const {
+    std::vector<float> res;
+    res.reserve(m_columns);
+    for (int j = 0; j < m_columns; ++j) {
+        res.push_back(get_item(i, j));
+    }
+    return res;
+}
+
 std::vector<float>
 DenseMatrix::operator*(const std::vector<float> &column) const {
     assert(m_columns == column.size() &&

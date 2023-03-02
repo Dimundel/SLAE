@@ -42,6 +42,8 @@ public:
     int get_number_of_columns() const;
     int get_number_of_rows() const;
     float get_item(int i, int j) const;
+    std::vector<float> get_column(int i) const;
+    std::vector<float> get_row(int i) const;
     std::vector<float> operator*(const std::vector<float> &column) const;
 };
 
