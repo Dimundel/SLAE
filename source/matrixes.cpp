@@ -44,6 +44,7 @@ const std::vector<int> &CSRMatrix::get_column_indexes() const {
 const std::vector<int> &CSRMatrix::get_row_indexation() const {
     return m_row_indexation;
 }
+
 float CSRMatrix::operator()(int i, int j) const {
     if (i + 1 >= m_column_indexes.size()) {
         return 0;
@@ -73,7 +74,9 @@ CSRMatrix::operator*(const std::vector<float> &column) const {
 DenseMatrix::DenseMatrix(const std::vector<float> &data, int columns_num)
     : m_data{data}, m_columns{columns_num}, m_rows{(data.size() + columns_num -
                                                     1) /
-                                                   columns_num} {}
+                                                   columns_num} {
+    m_data.resize(m_columns * m_rows);
+}
 
 int DenseMatrix::get_number_of_columns() const { return m_columns; }
 
@@ -84,6 +87,10 @@ float DenseMatrix::operator()(int i, int j) const {
         return 0;
     }
     return m_data[i * m_columns + j];
+}
+
+void DenseMatrix::set_item(int i, int j, float value) {
+    m_data[i * m_columns + j] = value;
 }
 
 std::vector<float> DenseMatrix::get_column(int i) const {
