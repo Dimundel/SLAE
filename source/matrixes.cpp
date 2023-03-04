@@ -6,7 +6,7 @@ TridiagonalMatrix::TridiagonalMatrix(
 
 int TridiagonalMatrix::get_size() const { return m_data.size(); }
 
-float TridiagonalMatrix::get_item(int i, int j) const {
+float TridiagonalMatrix::operator()(int i, int j) const {
     if (j == i - 1) {
         return m_data[i][0];
     } else if (j == i) {
@@ -44,7 +44,7 @@ const std::vector<int> &CSRMatrix::get_column_indexes() const {
 const std::vector<int> &CSRMatrix::get_row_indexation() const {
     return m_row_indexation;
 }
-float CSRMatrix::get_item(int i, int j) const {
+float CSRMatrix::operator()(int i, int j) const {
     if (i + 1 >= m_column_indexes.size()) {
         return 0;
     }
@@ -79,7 +79,7 @@ int DenseMatrix::get_number_of_columns() const { return m_columns; }
 
 int DenseMatrix::get_number_of_rows() const { return m_rows; }
 
-float DenseMatrix::get_item(int i, int j) const {
+float DenseMatrix::operator()(int i, int j) const {
     if (i * m_columns + j >= m_data.size()) {
         return 0;
     }
@@ -90,7 +90,7 @@ std::vector<float> DenseMatrix::get_column(int i) const {
     std::vector<float> res;
     res.reserve(m_rows);
     for (int j = 0; j < m_rows; ++j) {
-        res.push_back(get_item(j, i));
+        res.push_back((*this)(j, i));
     }
     return res;
 }
@@ -99,7 +99,7 @@ std::vector<float> DenseMatrix::get_row(int i) const {
     std::vector<float> res;
     res.reserve(m_columns);
     for (int j = 0; j < m_columns; ++j) {
-        res.push_back(get_item(i, j));
+        res.push_back((*this)(i, j));
     }
     return res;
 }
@@ -113,7 +113,7 @@ DenseMatrix::operator*(const std::vector<float> &column) const {
     for (int i = 0; i < m_rows; ++i) {
         temp = 0;
         for (int j = 0; j < m_columns; ++j) {
-            temp += get_item(i, j) * column[j];
+            temp += (*this)(i, j) * column[j];
         }
         res.push_back(temp);
     }

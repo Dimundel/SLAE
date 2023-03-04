@@ -40,10 +40,10 @@ TEST(CSRTest, CheckRowIndexationInitialization) {
 }
 
 TEST(CSRTest, CheckItemGetting) {
-    EXPECT_EQ(slae1.get_item(1, 1), 4);
-    EXPECT_EQ(slae1.get_item(1, 0), 0);
-    EXPECT_EQ(slae2.get_item(2, 3), 11);
-    EXPECT_EQ(slae2.get_item(9, 8), 0);
+    EXPECT_EQ(slae1(1, 1), 4);
+    EXPECT_EQ(slae1(1, 0), 0);
+    EXPECT_EQ(slae2(2, 3), 11);
+    EXPECT_EQ(slae2(9, 8), 0);
 }
 
 TEST(CSRTest, CheckMatrixVectorMultiplication) {

@@ -15,7 +15,7 @@ private:
 public:
     TridiagonalMatrix(const std::vector<std::array<float, 3>> &data);
     int get_size() const;
-    float get_item(int i, int j) const;
+    float operator()(int i, int j) const;
 };
 
 class CSRMatrix {
@@ -28,7 +28,7 @@ public:
     const std::vector<float> &get_values() const;
     const std::vector<int> &get_column_indexes() const;
     const std::vector<int> &get_row_indexation() const;
-    float get_item(int i, int j) const;
+    float operator()(int i, int j) const;
     std::vector<float> operator*(const std::vector<float> &column) const;
 };
 
@@ -41,7 +41,7 @@ public:
     DenseMatrix(const std::vector<float> &data, int m);
     int get_number_of_columns() const;
     int get_number_of_rows() const;
-    float get_item(int i, int j) const;
+    float operator()(int i, int j) const;
     std::vector<float> get_column(int i) const;
     std::vector<float> get_row(int i) const;
     std::vector<float> operator*(const std::vector<float> &column) const;

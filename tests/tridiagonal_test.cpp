@@ -6,8 +6,8 @@ const TridiagonalMatrix slae1({{0, -2, 1}, {1, -2, 1}, {1, -2, 1}, {1, -2, 0}});
 const TridiagonalMatrix slae2({{0, 2, 3}, {6, 3, 9}, {2, 5, 2}, {4, 3, 0}});
 
 TEST(TridiagonalTest, CheckItemGetting) {
-    EXPECT_EQ(slae1.get_item(0, 0), -2);
-    EXPECT_EQ(slae1.get_item(2, 0), 0);
+    EXPECT_EQ(slae1(0, 0), -2);
+    EXPECT_EQ(slae1(2, 0), 0);
 }
 
 TEST(TridiagonalTest, CheckSolving) {
