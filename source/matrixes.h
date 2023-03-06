@@ -42,6 +42,7 @@ public:
     int get_number_of_columns() const;
     int get_number_of_rows() const;
     float operator()(int i, int j) const;
+    bool operator==(const DenseMatrix &other) const;
     void set_item(int i, int j, float value);
     std::vector<float> get_column(int i) const;
     std::vector<float> get_row(int i) const;
