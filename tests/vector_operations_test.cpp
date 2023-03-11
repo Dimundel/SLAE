@@ -31,7 +31,7 @@ TEST(VectorOperationsTest, CheckVectorDotProduct) {
     EXPECT_EQ(dot_product(vec1, vec2), -8);
 }
 
-TEST(VectorOperationsTest, CheckVectorLength){
+TEST(VectorOperationsTest, CheckVectorLength) {
     std::vector<float> vec{3, 4, 12};
     EXPECT_EQ(length(vec), 13);
 }

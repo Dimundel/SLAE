@@ -1,6 +1,6 @@
 #include <cassert>
-#include <vector>
 #include <cmath>
+#include <vector>
 
 #ifndef VECTOR_OPERATIONS_H
 #define VECTOR_OPERATIONS_H

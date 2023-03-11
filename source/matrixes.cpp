@@ -89,10 +89,11 @@ float DenseMatrix::operator()(int i, int j) const {
     return m_data[i * m_columns + j];
 }
 
-bool DenseMatrix::operator==(const DenseMatrix &other) const{
-    assert(m_data.size() == other.m_data.size() && "matrixes must be the same size");
-    for(int i = 0; i < m_data.size(); ++i){
-        if(m_data[i] != other.m_data[i]){
+bool DenseMatrix::operator==(const DenseMatrix &other) const {
+    assert(m_data.size() == other.m_data.size() &&
+           "matrixes must be the same size");
+    for (int i = 0; i < m_data.size(); ++i) {
+        if (m_data[i] != other.m_data[i]) {
             return false;
         }
     }
