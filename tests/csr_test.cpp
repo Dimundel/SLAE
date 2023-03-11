@@ -13,11 +13,11 @@ const CSRMatrix
     slae3({{{0, 0}, 2}, {{0, 1}, 3}, {{0, 2}, -1}, {{2, 1}, 2}, {{2, 2}, 4}});
 
 TEST(CSRTest, CheckValueInitializaion) {
-    const std::vector<float> values1 = {1, 2, 4, 2, 6};
+    const std::vector<double> values1 = {1, 2, 4, 2, 6};
     ASSERT_EQ(slae1.get_values(), values1);
-    const std::vector<float> values2 = {1, 2, 3, 4, 1, 11};
+    const std::vector<double> values2 = {1, 2, 3, 4, 1, 11};
     ASSERT_EQ(slae2.get_values(), values2);
-    const std::vector<float> values3 = {2, 3, -1, 2, 4};
+    const std::vector<double> values3 = {2, 3, -1, 2, 4};
     ASSERT_EQ(slae3.get_values(), values3);
 }
 
@@ -47,14 +47,14 @@ TEST(CSRTest, CheckItemGetting) {
 }
 
 TEST(CSRTest, CheckMatrixVectorMultiplication) {
-    const std::vector<float> column1 = {1, 0, 3};
-    const std::vector<float> res1 = {1, 0, 18};
+    const std::vector<double> column1 = {1, 0, 3};
+    const std::vector<double> res1 = {1, 0, 18};
     EXPECT_EQ(slae1 * column1, res1);
-    const std::vector<float> column2 = {-2, 3, 0, -1, 2};
-    const std::vector<float> res2 = {1, 0, -8};
+    const std::vector<double> column2 = {-2, 3, 0, -1, 2};
+    const std::vector<double> res2 = {1, 0, -8};
     EXPECT_EQ(slae2 * column2, res2);
-    const std::vector<float> column3 = {2, 7, 1};
-    const std::vector<float> res3 = {24, 0, 18};
+    const std::vector<double> column3 = {2, 7, 1};
+    const std::vector<double> res3 = {24, 0, 18};
     EXPECT_EQ(slae3 * column3, res3);
 }
 

@@ -4,26 +4,27 @@
 
 #ifndef VECTOR_OPERATIONS_H
 #define VECTOR_OPERATIONS_H
-std::vector<float> &operator+=(std::vector<float> &vec1,
-                               const std::vector<float> &vec2);
+std::vector<double> &operator+=(std::vector<double> &vec1,
+                                const std::vector<double> &vec2);
 
-std::vector<float> operator+(const std::vector<float> &vec1,
-                             const std::vector<float> &vec2);
+std::vector<double> operator+(const std::vector<double> &vec1,
+                              const std::vector<double> &vec2);
 
-std::vector<float> &operator-=(std::vector<float> &vec1,
-                               const std::vector<float> &vec2);
+std::vector<double> &operator-=(std::vector<double> &vec1,
+                                const std::vector<double> &vec2);
 
-std::vector<float> operator-(const std::vector<float> &vec1,
-                             const std::vector<float> &vec2);
+std::vector<double> operator-(const std::vector<double> &vec1,
+                              const std::vector<double> &vec2);
 
-std::vector<float> &operator*=(std::vector<float> &vec, const int num);
+std::vector<double> &operator*=(std::vector<double> &vec, const int num);
 
-std::vector<float> operator*(const std::vector<float> &vec, const int num);
+std::vector<double> operator*(const std::vector<double> &vec, const int num);
 
-std::vector<float> operator*(const int num, const std::vector<float> &vec);
+std::vector<double> operator*(const int num, const std::vector<double> &vec);
 
-float dot_product(const std::vector<float> vec1, const std::vector<float> vec2);
+double dot_product(const std::vector<double> vec1,
+                   const std::vector<double> vec2);
 
-float length(const std::vector<float> vec);
+double length(const std::vector<double> vec);
 
 #endif

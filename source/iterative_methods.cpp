@@ -1,25 +1,25 @@
 #include "iterative_methods.h"
 #include "vector_operations.h"
 
-std::vector<float> simple_iteration(const CSRMatrix &A,
-                                    const std::vector<float> &b,
-                                    const std::vector<float> &x0, const float t,
-                                    const float tolerance) {
-    std::vector<float> x = x0;
+std::vector<double> simple_iteration(const CSRMatrix &A,
+                                     const std::vector<double> &b,
+                                     const std::vector<double> &x0,
+                                     const double t, const double tolerance) {
+    std::vector<double> x = x0;
     while (length(b - (A * x)) >= tolerance) {
         x = x - t * (A * x - b);
     }
     return x;
 }
 
-std::vector<float> jacobi_iteration(const CSRMatrix &A,
-                                    const std::vector<float> &b,
-                                    const std::vector<float> &x0,
-                                    const float tolerance) {
-    std::vector<float> x = x0;
+std::vector<double> jacobi_iteration(const CSRMatrix &A,
+                                     const std::vector<double> &b,
+                                     const std::vector<double> &x0,
+                                     const double tolerance) {
+    std::vector<double> x = x0;
     while (length(b - A * x) >= tolerance) {
         for (int i = 0; i < b.size(); ++i) {
-            float temp = 0;
+            double temp = 0;
             for (int j = 0; j < b.size(); ++j) {
                 if (i == j) {
                     continue;
@@ -32,12 +32,12 @@ std::vector<float> jacobi_iteration(const CSRMatrix &A,
     return x;
 }
 
-std::vector<float> gauss_seidel_iteration(const CSRMatrix &A,
-                                          const std::vector<float> &b,
-                                          const std::vector<float> &x0,
-                                          const float tolerance) {
-    std::vector<float> x = x0;
-    std::vector<float> x_next = x0;
+std::vector<double> gauss_seidel_iteration(const CSRMatrix &A,
+                                           const std::vector<double> &b,
+                                           const std::vector<double> &x0,
+                                           const double tolerance) {
+    std::vector<double> x = x0;
+    std::vector<double> x_next = x0;
     x_next.resize(b.size());
     while (length(b - A * x) >= tolerance) {
         for (int i = 0; i < b.size(); ++i) {
