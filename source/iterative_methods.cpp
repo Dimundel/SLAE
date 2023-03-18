@@ -17,17 +17,19 @@ std::vector<double> jacobi_iteration(const CSRMatrix &A,
                                      const std::vector<double> &x0,
                                      const double tolerance) {
     std::vector<double> x = x0;
+    std::vector<double> x_next(b.size());
     while (length(b - A * x) >= tolerance) {
         for (int i = 0; i < b.size(); ++i) {
-            double temp = 0;
+            double temp = b[i];
             for (int j = 0; j < b.size(); ++j) {
                 if (i == j) {
                     continue;
                 }
-                temp += A(i, j) * x[j];
+                temp -= A(i, j) * x[j];
             }
-            x[i] = (b[i] - temp) / A(i, i);
+            x_next[i] = temp / A(i, i);
         }
+        x = x_next;
     }
     return x;
 }
@@ -37,8 +39,7 @@ std::vector<double> gauss_seidel_iteration(const CSRMatrix &A,
                                            const std::vector<double> &x0,
                                            const double tolerance) {
     std::vector<double> x = x0;
-    std::vector<double> x_next = x0;
-    x_next.resize(b.size());
+    std::vector<double> x_next(b.size());
     while (length(b - A * x) >= tolerance) {
         for (int i = 0; i < b.size(); ++i) {
             x_next[i] = b[i];
