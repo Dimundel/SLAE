@@ -13,12 +13,12 @@ std::vector<double> x0 = {0, 0, 0};
 std::vector<double> solution1 = {110.0 / 69.0, 280.0 / 69.0, 41.0 / 69.0};
 const double ERROR = 1e-5;
 
-// TEST(IterativeMethods, CheckSimpleIteration) {
-//     std::vector<double> res = simple_iteration(slae1, b, x0, 0.16, 10e-12);
-//     for (int i = 0; i < res.size(); ++i) {
-//         EXPECT_NEAR(res[i], solution1[i], ERROR);
-//     }
-// }
+TEST(IterativeMethods, CheckSimpleIteration) {
+    std::vector<double> res = simple_iteration(slae1, b, x0, 0.001, 10e-12);
+    for (int i = 0; i < res.size(); ++i) {
+        EXPECT_NEAR(res[i], solution1[i], ERROR);
+    }
+}
 
 TEST(IterativeMethods, CheckJacobiIteration) {
     std::vector<double> res = jacobi_iteration(slae1, b, x0, 1e-20);
