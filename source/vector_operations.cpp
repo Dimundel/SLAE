@@ -46,16 +46,16 @@ std::vector<double> operator*(const int num, const std::vector<double> &vec) {
     return vec * num;
 }
 
-double dot_product(const std::vector<double> vec1,
-                   const std::vector<double> vec2) {
+double dot_product(const std::vector<double> &vec1,
+                   const std::vector<double> &vec2) {
     assert(vec1.size() == vec2.size() && "vectors must be the same size");
-    int res = 0;
+    double res = 0;
     for (int i = 0; i < vec1.size(); ++i) {
         res += vec1[i] * vec2[i];
     }
     return res;
 }
 
-double length(const std::vector<double> vec) {
+double length(const std::vector<double> &vec) {
     return std::sqrt(dot_product(vec, vec));
 }
