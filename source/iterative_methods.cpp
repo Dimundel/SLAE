@@ -6,8 +6,8 @@ std::vector<double> simple_iteration(const CSRMatrix &A,
                                      const std::vector<double> &x0,
                                      const double t, const double tolerance) {
     std::vector<double> x = x0;
-    while (length(b - (A * x)) >= tolerance) {
-        x = x - t * (A * x - b);
+    while (length(b - A * x) >= tolerance) {
+        x = x + t * (b - A * x);
     }
     return x;
 }

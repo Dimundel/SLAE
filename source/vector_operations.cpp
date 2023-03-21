@@ -29,20 +29,20 @@ std::vector<double> operator-(const std::vector<double> &vec1,
     return vec_res;
 }
 
-std::vector<double> &operator*=(std::vector<double> &vec, const int num) {
+std::vector<double> &operator*=(std::vector<double> &vec, const double num) {
     for (int i = 0; i < vec.size(); ++i) {
         vec[i] *= num;
     }
     return vec;
 }
 
-std::vector<double> operator*(const std::vector<double> &vec, const int num) {
+std::vector<double> operator*(const std::vector<double> &vec, const double num) {
     std::vector<double> vec_res(vec);
     vec_res *= num;
     return vec_res;
 }
 
-std::vector<double> operator*(const int num, const std::vector<double> &vec) {
+std::vector<double> operator*(const double num, const std::vector<double> &vec) {
     return vec * num;
 }
 

@@ -8,4 +8,3 @@ include_directories(source)
 
 add_subdirectory(source)
 add_subdirectory(tests)
-add_subdirectory(graphs)
