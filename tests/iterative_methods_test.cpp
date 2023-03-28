@@ -34,6 +34,14 @@ TEST(IterativeMethods, CheckGaussSeidelIteration) {
     }
 }
 
+TEST(IterativeMethods, CheckAcceleratedSimpleIteration) {
+    std::vector<double> res = accelerated_simple_iteration(
+        slae1, b, x0, 6.697224362268005353440389, 10.30277563773199464655961, 1e-12);
+    for (int i = 0; i < res.size(); ++i) {
+        EXPECT_NEAR(res[i], solution1[i], ERROR);
+    }
+}
+
 int main() {
     ::testing::InitGoogleTest();
     return RUN_ALL_TESTS();
