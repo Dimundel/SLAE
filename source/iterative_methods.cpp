@@ -39,19 +39,17 @@ std::vector<double> gauss_seidel_iteration(const CSRMatrix &A,
                                            const std::vector<double> &x0,
                                            const double tolerance) {
     std::vector<double> x = x0;
-    std::vector<double> x_next(b.size());
     while (length(b - A * x) >= tolerance) {
         for (int i = 0; i < b.size(); ++i) {
-            x_next[i] = b[i];
+            x[i] = b[i];
             for (int j = 0; j < i; ++j) {
-                x_next[i] -= A(i, j) * x_next[j];
+                x[i] -= A(i, j) * x[j];
             }
             for (int j = i + 1; j < b.size(); ++j) {
-                x_next[i] -= A(i, j) * x[j];
+                x[i] -= A(i, j) * x[j];
             }
-            x_next[i] /= A(i, i);
+            x[i] /= A(i, i);
         }
-        x = x_next;
     }
     return x;
 }
