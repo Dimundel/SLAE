@@ -42,6 +42,13 @@ TEST(IterativeMethods, CheckAcceleratedSimpleIteration) {
     }
 }
 
+TEST(IterativeMethods, CheckSORIteration) {
+    std::vector<double> res = SOR_iteration(slae1, b, x0, 1.9, 1e-12);
+    for (int i = 0; i < res.size(); ++i) {
+        EXPECT_NEAR(res[i], solution1[i], ERROR);
+    }
+}
+
 int main() {
     ::testing::InitGoogleTest();
     return RUN_ALL_TESTS();

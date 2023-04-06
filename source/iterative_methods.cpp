@@ -91,3 +91,25 @@ std::vector<double> accelerated_simple_iteration(const CSRMatrix &A,
     }
     return x;
 }
+
+std::vector<double> SOR_iteration(const CSRMatrix &A,
+                                  const std::vector<double> &b,
+                                  const std::vector<double> &x0, const double w,
+                                  const double tolerance) {
+    std::vector<double> x = x0;
+    while (length(b - A * x) >= tolerance) {
+        for (int i = 0; i < b.size(); ++i) {
+            double temp_x = x[i];
+            x[i] = b[i];
+            for (int j = 0; j < i; ++j) {
+                x[i] -= A(i, j) * x[j];
+            }
+            for (int j = i + 1; j < b.size(); ++j) {
+                x[i] -= A(i, j) * x[j];
+            }
+            x[i] *= w / A(i, i);
+            x[i] += (1 - w) * temp_x;
+        }
+    }
+    return x;
+}
