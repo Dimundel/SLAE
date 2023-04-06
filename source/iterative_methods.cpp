@@ -42,10 +42,10 @@ std::vector<double> gauss_seidel_iteration(const CSRMatrix &A,
     while (length(b - A * x) >= tolerance) {
         for (int i = 0; i < b.size(); ++i) {
             x[i] = b[i];
-            for (int j = 0; j < i; ++j) {
-                x[i] -= A(i, j) * x[j];
-            }
-            for (int j = i + 1; j < b.size(); ++j) {
+            for (int j = 0; j < b.size(); ++j) {
+                if (i == j) {
+                    continue;
+                }
                 x[i] -= A(i, j) * x[j];
             }
             x[i] /= A(i, i);
@@ -101,10 +101,10 @@ std::vector<double> SOR_iteration(const CSRMatrix &A,
         for (int i = 0; i < b.size(); ++i) {
             double temp_x = x[i];
             x[i] = b[i];
-            for (int j = 0; j < i; ++j) {
-                x[i] -= A(i, j) * x[j];
-            }
-            for (int j = i + 1; j < b.size(); ++j) {
+            for (int j = 0; j < b.size(); ++j) {
+                if (i == j) {
+                    continue;
+                }
                 x[i] -= A(i, j) * x[j];
             }
             x[i] *= w / A(i, i);
@@ -121,20 +121,20 @@ std::vector<double> symmetric_gauss_seidel_iteration(
     while (length(b - A * x) >= tolerance) {
         for (int i = 0; i < b.size(); ++i) {
             x[i] = b[i];
-            for (int j = 0; j < i; ++j) {
-                x[i] -= A(i, j) * x[j];
-            }
-            for (int j = i + 1; j < b.size(); ++j) {
+            for (int j = 0; j < b.size(); ++j) {
+                if (i == j) {
+                    continue;
+                }
                 x[i] -= A(i, j) * x[j];
             }
             x[i] /= A(i, i);
         }
         for (int i = A.get_row_indexation().size() - 1; i >= 0; --i) {
             x[i] = b[i];
-            for (int j = 0; j < i; ++j) {
-                x[i] -= A(i, j) * x[j];
-            }
-            for (int j = i + 1; j < b.size(); ++j) {
+            for (int j = 0; j < b.size(); ++j) {
+                if (i == j) {
+                    continue;
+                }
                 x[i] -= A(i, j) * x[j];
             }
             x[i] /= A(i, i);
