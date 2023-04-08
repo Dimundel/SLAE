@@ -46,10 +46,10 @@ const std::vector<int> &CSRMatrix::get_row_indexation() const {
 }
 
 double CSRMatrix::operator()(int i, int j) const {
-    if (i + 1 >= m_column_indexes.size()) {
+    if (i + 2 > m_row_indexation.size()) {
         return 0;
     }
-    for (int k = m_row_indexation[i]; k <= m_row_indexation[i + 1]; ++k) {
+    for (int k = m_row_indexation[i]; k < m_row_indexation[i + 1]; ++k) {
         if (m_column_indexes[k] == j) {
             return m_values[k];
         }

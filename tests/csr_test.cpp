@@ -12,6 +12,13 @@ const CSRMatrix slae2({{{2, 3}, 11},
 const CSRMatrix
     slae3({{{0, 0}, 2}, {{0, 1}, 3}, {{0, 2}, -1}, {{2, 1}, 2}, {{2, 2}, 4}});
 
+const CSRMatrix slae4({{{0, 0}, 10},
+                       {{0, 1}, 1},
+                       {{1, 0}, 1},
+                       {{1, 1}, 7},
+                       {{2, 1}, 0.1},
+                       {{2, 2}, 1}});
+
 TEST(CSRTest, CheckValueInitializaion) {
     const std::vector<double> values1 = {1, 2, 4, 2, 6};
     ASSERT_EQ(slae1.get_values(), values1);
@@ -19,6 +26,8 @@ TEST(CSRTest, CheckValueInitializaion) {
     ASSERT_EQ(slae2.get_values(), values2);
     const std::vector<double> values3 = {2, 3, -1, 2, 4};
     ASSERT_EQ(slae3.get_values(), values3);
+    const std::vector<double> values4 = {10, 1, 1, 7, 0.1, 1};
+    ASSERT_EQ(slae4.get_values(), values4);
 }
 
 TEST(CSRTest, CheckColumnIndexesInitialization) {
@@ -28,6 +37,8 @@ TEST(CSRTest, CheckColumnIndexesInitialization) {
     ASSERT_EQ(slae2.get_column_indexes(), column_indexes2);
     const std::vector<int> column_indexes3 = {0, 1, 2, 1, 2};
     ASSERT_EQ(slae3.get_column_indexes(), column_indexes3);
+    const std::vector<int> column_indexes4 = {0, 1, 0, 1, 1, 2};
+    ASSERT_EQ(slae4.get_column_indexes(), column_indexes4);
 }
 
 TEST(CSRTest, CheckRowIndexationInitialization) {
@@ -37,6 +48,8 @@ TEST(CSRTest, CheckRowIndexationInitialization) {
     ASSERT_EQ(slae2.get_row_indexation(), row_indexation2);
     const std::vector<int> row_indexation3 = {0, 3, 3, 5};
     ASSERT_EQ(slae3.get_row_indexation(), row_indexation3);
+    const std::vector<int> row_indexation4 = {0, 2, 4, 6};
+    ASSERT_EQ(slae4.get_row_indexation(), row_indexation4);
 }
 
 TEST(CSRTest, CheckItemGetting) {
@@ -44,6 +57,11 @@ TEST(CSRTest, CheckItemGetting) {
     EXPECT_EQ(slae1(1, 0), 0);
     EXPECT_EQ(slae2(2, 3), 11);
     EXPECT_EQ(slae2(9, 8), 0);
+    EXPECT_EQ(slae4(9, 8), 0);
+    EXPECT_EQ(slae4(100, 1), 0);
+    EXPECT_EQ(slae4(1, 100), 0);
+    EXPECT_EQ(slae4(2, 1), 0.1);
+    EXPECT_EQ(slae4(1, 2), 0);
 }
 
 TEST(CSRTest, CheckMatrixVectorMultiplication) {
