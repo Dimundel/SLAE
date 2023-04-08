@@ -51,7 +51,16 @@ TEST(IterativeMethods, CheckSORIteration) {
 }
 
 TEST(IterativeMethods, CheckSymmetricGaussSeidelIteration) {
-    std::vector<double> res = symmetric_gauss_seidel_iteration(slae1, b, x0, 1e-12);
+    std::vector<double> res =
+        symmetric_gauss_seidel_iteration(slae1, b, x0, 1e-12);
+    for (int i = 0; i < res.size(); ++i) {
+        EXPECT_NEAR(res[i], solution1[i], ERROR);
+    }
+}
+
+TEST(IterativeMethods, CheckAcceleratedSymmetricGaussSeidelIteration) {
+    std::vector<double> res =
+        accelerated_symmetric_gauss_seidel_iteration(slae1, b, x0, 10.3, 1e-12);
     for (int i = 0; i < res.size(); ++i) {
         EXPECT_NEAR(res[i], solution1[i], ERROR);
     }

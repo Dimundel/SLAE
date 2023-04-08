@@ -129,7 +129,7 @@ std::vector<double> symmetric_gauss_seidel_iteration(
             }
             x[i] /= A(i, i);
         }
-        for (int i = A.get_row_indexation().size() - 1; i >= 0; --i) {
+        for (int i = A.get_row_indexation().size() - 2; i >= 0; --i) {
             x[i] = b[i];
             for (int j = 0; j < b.size(); ++j) {
                 if (i == j) {
@@ -141,4 +141,52 @@ std::vector<double> symmetric_gauss_seidel_iteration(
         }
     }
     return x;
+}
+
+std::vector<double>
+symmetric_gauss_seidel_one_iteration(const CSRMatrix &A,
+                                     const std::vector<double> &b,
+                                     const std::vector<double> &x0) {
+    std::vector<double> x = x0;
+    for (int i = 0; i < b.size(); ++i) {
+        x[i] = b[i];
+        for (int j = 0; j < b.size(); ++j) {
+            if (i == j) {
+                continue;
+            }
+            x[i] -= A(i, j) * x[j];
+        }
+        x[i] /= A(i, i);
+    }
+    for (int i = A.get_row_indexation().size() - 2; i >= 0; --i) {
+        x[i] = b[i];
+        for (int j = 0; j < b.size(); ++j) {
+            if (i == j) {
+                continue;
+            }
+            x[i] -= A(i, j) * x[j];
+        }
+        x[i] /= A(i, i);
+    }
+    return x;
+}
+
+std::vector<double> accelerated_symmetric_gauss_seidel_iteration(
+    const CSRMatrix &A, const std::vector<double> &b,
+    const std::vector<double> &x0, const double rho, const double tolerance) {
+    double mu0 = 1;
+    double mu1 = 1 / rho;
+    std::vector<double> y0 = x0;
+    std::vector<double> y1 = symmetric_gauss_seidel_one_iteration(A, b, y0);
+    std::vector<double> y;
+    while (length(b - A * y1) > tolerance) {
+        y1 = symmetric_gauss_seidel_one_iteration(A, b, y1);
+        y = 2 * mu1 / rho * y1 - mu0 * y0;
+        mu0 = 2 / rho * mu1 - mu0;
+        y *= 1 / mu0;
+        y0 = y1;
+        y1 = y;
+        std::swap(mu0, mu1);
+    }
+    return y;
 }
