@@ -39,3 +39,8 @@ symmetric_gauss_seidel_one_iteration(const CSRMatrix &A,
 std::vector<double> accelerated_symmetric_gauss_seidel_iteration(
     const CSRMatrix &A, const std::vector<double> &b,
     const std::vector<double> &x0, const double rho, const double tolerance);
+
+std::vector<double> steepest_descent_iteration(const CSRMatrix &A,
+                                               const std::vector<double> &b,
+                                               const std::vector<double> &x0,
+                                               const double tolerance);

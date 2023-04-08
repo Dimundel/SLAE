@@ -190,3 +190,19 @@ std::vector<double> accelerated_symmetric_gauss_seidel_iteration(
     }
     return y;
 }
+
+std::vector<double> steepest_descent_iteration(const CSRMatrix &A,
+                                               const std::vector<double> &b,
+                                               const std::vector<double> &x0,
+                                               const double tolerance) {
+    std::vector<double> x = x0;
+    std::vector<double> residual = A * x - b;
+    double alpha;
+    while (length(residual) > tolerance) {
+        alpha = dot_product(residual, residual) /
+                (dot_product(residual, A * residual));
+        x = x - alpha * residual;
+        residual = A * x - b;
+    }
+    return x;
+}
