@@ -36,13 +36,15 @@ std::vector<double> &operator*=(std::vector<double> &vec, const double num) {
     return vec;
 }
 
-std::vector<double> operator*(const std::vector<double> &vec, const double num) {
+std::vector<double> operator*(const std::vector<double> &vec,
+                              const double num) {
     std::vector<double> vec_res(vec);
     vec_res *= num;
     return vec_res;
 }
 
-std::vector<double> operator*(const double num, const std::vector<double> &vec) {
+std::vector<double> operator*(const double num,
+                              const std::vector<double> &vec) {
     return vec * num;
 }
 
