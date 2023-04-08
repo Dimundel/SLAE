@@ -73,6 +73,13 @@ TEST(IterativeMethods, CheckSteepestDescentIteration) {
     }
 }
 
+TEST(IterativeMethods, CheckConjugateGradientsIteration) {
+    std::vector<double> res = conjugate_gradients(slae1, b, x0, 1e-12);
+    for (int i = 0; i < res.size(); ++i) {
+        EXPECT_NEAR(res[i], solution1[i], ERROR);
+    }
+}
+
 int main() {
     ::testing::InitGoogleTest();
     return RUN_ALL_TESTS();

@@ -44,3 +44,8 @@ std::vector<double> steepest_descent_iteration(const CSRMatrix &A,
                                                const std::vector<double> &b,
                                                const std::vector<double> &x0,
                                                const double tolerance);
+
+std::vector<double> conjugate_gradients(const CSRMatrix &A,
+                                        const std::vector<double> &b,
+                                        const std::vector<double> &x0,
+                                        const double tolerance);

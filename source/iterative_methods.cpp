@@ -206,3 +206,27 @@ std::vector<double> steepest_descent_iteration(const CSRMatrix &A,
     }
     return x;
 }
+
+std::vector<double> conjugate_gradients(const CSRMatrix &A,
+                                        const std::vector<double> &b,
+                                        const std::vector<double> &x0,
+                                        const double tolerance) {
+    std::vector<double> x = x0;
+    std::vector<double> residual = A * x - b;
+    std::vector<double> d = residual;
+    std::vector<double> residual_next;
+    double alpha, beta;
+    while (length(residual) > tolerance) {
+        alpha = dot_product(residual, residual) / dot_product(d, A * d);
+        x -= alpha * d;
+        residual_next = residual - alpha * (A * d);
+        if (length(d) == 0) {
+            break;
+        } else {
+            beta = dot_product(residual_next, residual_next) / dot_product(residual, residual);
+            d = residual_next + beta*d;
+        }
+        residual = residual_next;
+    }
+    return x;
+}
