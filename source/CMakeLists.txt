@@ -1,1 +1,1 @@
-add_library(SLAE matrixes.cpp matrixes.h solvers.cpp solvers.h vector_operations.cpp vector_operations.h decompositions.cpp decompositions.h iterative_methods.cpp iterative_methods.h)
+add_library(SLAE matrixes.cpp matrixes.h solvers.cpp solvers.h vector_operations.cpp vector_operations.h algorithms.cpp algorithms.h iterative_methods.cpp iterative_methods.h)
