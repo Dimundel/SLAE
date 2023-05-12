@@ -10,10 +10,13 @@ struct DecompositionQR {
 
 DenseMatrix HouseholderDecompostion(const DenseMatrix &matrix);
 
-std::vector<double> backGauss(const DenseMatrix &A,
-                              const std::vector<double> &b);
+std::vector<double> back_gauss(const DenseMatrix &A,
+                               const std::vector<double> &b);
 
-void Arnoldi_algorithm(const CSRMatrix &A, std::vector<std::vector<double>> &Q,
+void givence_rotation(DenseMatrix &H, const int n,
+                      std::vector<std::pair<double, double>> &turns);
+
+void arnoldi_algorithm(const CSRMatrix &A, std::vector<std::vector<double>> &Q,
                        DenseMatrix &HessenbergMatrix, const int n);
 
 #endif

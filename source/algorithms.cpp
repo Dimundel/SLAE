@@ -25,8 +25,8 @@ DenseMatrix HouseholderDecompostion(const DenseMatrix &matrix) {
     return R;
 }
 
-std::vector<double> backGauss(const DenseMatrix &A,
-                              const std::vector<double> &b) {
+std::vector<double> back_gauss(const DenseMatrix &A,
+                               const std::vector<double> &b) {
     std::vector<double> res = b;
     const int n = b.size();
     res[n - 1] = A(n - 1, n);
@@ -39,7 +39,26 @@ std::vector<double> backGauss(const DenseMatrix &A,
     return res;
 }
 
-void Arnoldi_algorithm(const CSRMatrix &A, std::vector<std::vector<double>> &Q,
+void givence_rotation(DenseMatrix &H, const int n,
+                      std::vector<std::pair<double, double>> &turns) {
+    for (int i = 0; i < turns.size(); ++i) {
+        double h_k = turns[i].first * H(i, n) + turns[i].second * H(i + 1, n);
+        double h_k1 = -turns[i].first * H(i, n) + turns[i].second * H(i + 1, n);
+        H.set_item(i, n, h_k);
+        H.set_item(i + 1, n, h_k1);
+    }
+    const double prev = H(n, n);
+    const double next = H(n + 1, n);
+    const double coords_sqrt = 1.0 / std::sqrt(next * next + prev * prev);
+    const double cos_theta = prev * coords_sqrt;
+    const double sin_theta = next * coords_sqrt;
+    const double h_k = cos_theta * prev + sin_theta * next;
+    const double h_k1 = -sin_theta * prev + cos_theta * next;
+    H.set_item(n, n, h_k);
+    H.set_item(n + 1, n, h_k1);
+}
+
+void arnoldi_algorithm(const CSRMatrix &A, std::vector<std::vector<double>> &Q,
                        DenseMatrix &HessenbergMatrix, const int n) {
     std::vector<double> v_0 = A * Q[n];
     double h;
