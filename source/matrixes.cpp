@@ -71,12 +71,15 @@ CSRMatrix::operator*(const std::vector<double> &column) const {
     return res;
 }
 
-DenseMatrix::DenseMatrix(const std::vector<double> &data, int columns_num)
-    : m_data{data}, m_columns{columns_num}, m_rows{(data.size() + columns_num -
-                                                    1) /
-                                                   columns_num} {
+DenseMatrix::DenseMatrix(const std::vector<double> &data, const int num_columns)
+    : m_data{data}, m_columns{num_columns},
+      m_rows{(data.size() + num_columns - 1) / num_columns} {
     m_data.resize(m_columns * m_rows);
 }
+
+DenseMatrix::DenseMatrix(const int num_rows, const int num_columns)
+    : m_data{std::vector<double>(num_rows * num_columns, 0)},
+      m_columns{num_columns} {}
 
 int DenseMatrix::get_number_of_columns() const { return m_columns; }
 

@@ -34,6 +34,14 @@ TEST(DenseTest, CheckRowGetting) {
     EXPECT_EQ(slae1.get_row(1), row1);
 }
 
+TEST(DenseTest, CheckZeroInitialization){
+    DenseMatrix matrix(3, 4);
+    for(int i = 0; i < 3; ++i){
+        for(int j = 0; j < 4; ++j)
+        ASSERT_EQ(matrix(i, j), 0);
+    }
+}
+
 int main() {
     ::testing::InitGoogleTest();
     return RUN_ALL_TESTS();

@@ -38,7 +38,8 @@ private:
     int m_columns, m_rows;
 
 public:
-    DenseMatrix(const std::vector<double> &data, int m);
+    DenseMatrix(const std::vector<double> &data, const int num_columns);
+    DenseMatrix(const int num_rows, const int num_columns);
     int get_number_of_columns() const;
     int get_number_of_rows() const;
     double operator()(int i, int j) const;
